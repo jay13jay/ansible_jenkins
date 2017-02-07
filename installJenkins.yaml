@@ -1,0 +1,29 @@
+---
+- name: "Install and configure Jenkins Build server"
+  vars_files:
+    - vars/vars.yaml
+  hosts: "{{ hosts }}"
+  remote_user: admin
+  become: yes
+  tasks:
+  - name: Install base packages
+    yum:
+      name: "{{ base_packages }}"
+      state: latest
+  - name: Place jenkins Repo
+    template: src=files/jenkins.repo dest=/etc/yum.repos.d/jenkins.repo
+    register: placerepo
+  - name: Import Jenkins Repo Key
+    rpm_key:
+      state: present
+      key: https://jenkins-ci.org/redhat/jenkins-ci.org.key
+    when: placerepo
+  - name: Install and Start Jenkins
+    yum:
+      name: jenkins
+  - shell: yum clean all
+  - name: Start and Enable Jenkins
+    service:
+      name: jenkins
+      enabled: yes
+      state: started

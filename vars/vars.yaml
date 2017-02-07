@@ -1,0 +1,9 @@
+---
+- hosts:
+  - jenkins01
+
+- base_packages:
+  - wget
+  - whois
+  - tcpdump
+  - java
