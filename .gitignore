@@ -1,3 +1,7 @@
+###### My Ignores ######
+*.retry
+#### End My Ignores ####
+##### Git python default ignore ######
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
