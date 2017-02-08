@@ -21,9 +21,15 @@
   - name: Install and Start Jenkins
     yum:
       name: jenkins
-  - shell: yum clean all
   - name: Start and Enable Jenkins
     service:
       name: jenkins
+      enabled: yes
+      state: started
+  - name: Place Nginx Configuratin
+    template: src=files/nginx.conf dest=/etc/nginx/nginx.conf
+  - name: Start and Enable nginx
+    service:
+      name: nginx
       enabled: yes
       state: started
