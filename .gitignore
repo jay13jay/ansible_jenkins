@@ -1,5 +1,6 @@
 ###### My Ignores ######
 *.retry
+*pair*
 #### End My Ignores ####
 ##### Git python default ignore ######
 # Byte-compiled / optimized / DLL files

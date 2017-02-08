@@ -1,0 +1,23 @@
+---
+- name: "Install and configure Jenkins Build server"
+  vars_files:
+    - vars/vars.yaml
+  hosts: "{{ hosts }}"
+  remote_user: admin
+  become: yes
+  tasks:
+  - name: Install NodeJS and dependent packages
+    yum:
+      name: '{{ node_sys_packages }}'
+  - name: create repo dir
+    file:
+      path: /opt/repos/Brainfock
+      state: directory
+      mode: 0755
+  - name: Clone git Repo
+    git:
+      repo: git@github.com:Brainfock/Brainfock.git
+      dest: /opt/repos/Brainfock
+  - name: NPM Install Brainfock
+    npm:
+      path: /opt/repos/Brainfock

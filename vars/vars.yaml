@@ -7,3 +7,12 @@
   - whois
   - tcpdump
   - java
+  - nginx
+  - epel-release
+  - git
+
+- node_sys_packages:
+  - nodejs
+  - git
+  - gcc*
+  - make
